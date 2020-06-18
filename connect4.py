@@ -25,5 +25,38 @@ def connect4():
                 print(j , " ",end="")
                 print(bcolors.ENDC,end="")
             print("\n",end="")
-
+    def checkIfFree(a):
+        if(board[0][a]==0):
+            return 1
+        print("This position is not free. Your oponent's turn beacause you gave invalid position")
+        return 0
+    def askForMove():
+        play=int(input("select your next move (1-6):"))-1
+        while play>5 or play<0:
+            play=int(input("select your next move (1-6):"))-1
+        return play
     printBoard()
+    def checkIfBoardIsFull():
+        for i in range(6):
+            if board[0][i]==0:
+                return 0
+        return 1
+    while True:
+        play=askForMove()
+        if checkIfFree(play):
+            check=-1
+            while board[check][play]!=0:
+                check=check-1
+            board[check][play]="X"
+        while True:
+            enemyTurn=randint(0,5)
+            if board[0][enemyTurn]==0:
+                check=-1
+                while board[check][enemyTurn]!=0:
+                    check=check-1
+                board[check][enemyTurn]="Y"
+                break
+        if checkIfBoardIsFull():
+            print("The board is full")
+            break
+        printBoard()
