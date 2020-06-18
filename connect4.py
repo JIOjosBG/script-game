@@ -6,7 +6,6 @@ def connect4():
     for i in range(6):
         board.append([0,0,0,0,0,0])
         print(board[i])
-    board[-1]=["X","X",0,0,0,0]
     print("You will be playing with the computer")
     def printBoard():
         class bcolors:
