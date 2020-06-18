@@ -58,5 +58,6 @@ def connect4():
                 break
         if checkIfBoardIsFull():
             print("The board is full")
+            printBoard()
             break
         printBoard()
