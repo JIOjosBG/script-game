@@ -1,10 +1,12 @@
 from random import randint,seed
 seed(randint(0,10))
 def connect4():
+    print("To get the full experience use terminal")
     board=[]
     for i in range(6):
         board.append([0,0,0,0,0,0])
         print(board[i])
+    board[-1]=["X","X",0,0,0,0]
     print("You will be playing with the computer")
     def printBoard():
         class bcolors:
@@ -41,6 +43,15 @@ def connect4():
             if board[0][i]==0:
                 return 0
         return 1
+    def checkIfWin():
+        for i in range(6):
+            for k in range(3):
+                if board[i][0+k]!=0 and board[i][0+k]==board[i][1+k] and board[i][1+k]==board[i][2+k] and board[i][2+k]==board[i][3+k]:
+                    return 1
+                if board[0+k][i]!=0 and board[0+k][i]==board[1+k][i] and board[1+k][i]==board[2+k][i] and board[2+k][i]==board[3+k][i]:
+                    return 1
+
+
     while True:
         play=askForMove()
         if checkIfFree(play):
@@ -56,8 +67,11 @@ def connect4():
                     check=check-1
                 board[check][enemyTurn]="Y"
                 break
+        if checkIfWin():
+            print('\033[93m',"There is a winner",'\033[0m')
         if checkIfBoardIsFull():
-            print("The board is full")
+            print('\033[93m',"The board is full",'\033[0m')
             printBoard()
             break
+
         printBoard()
